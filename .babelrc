@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["android >= 5"]
+      }
+    }]
+  ],
+  "plugins": [
+  	"transform-inline-environment-variables",
+  	"transform-react-jsx"
+  ]
+}
