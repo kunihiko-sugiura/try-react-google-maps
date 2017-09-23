@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            zoom: 16,
+            zoom: 10,
             center: {
                 lat: 35.1837659,
                 lng: 136.9002941
@@ -92,6 +92,7 @@ class App extends React.Component {
                     }}>
                         <MapContainer
                             zoom={this.state.zoom}
+                            selected={this.state.selected}
                             markers={this.state.markers || []}
                             center={ this.state.center }
                         />
@@ -102,6 +103,7 @@ class App extends React.Component {
                     float: "right",
                 }}>
                     <EstateListContainer
+                        selected={this.state.selected}
                         markers={this.state.markers}
                         dispatch={this.dispatch.bind(this)}
                     />

@@ -16,6 +16,7 @@ class EstateListContainer extends React.Component {
                     key={ marker.id }
                     marker={marker}
                     dispatch={this.props.dispatch}
+                    selected={marker.id === this.props.selected}
                 />
             );
         }
@@ -55,7 +56,8 @@ class EstateListItemContainer extends React.Component {
                     height: 200,
                     cursor:"pointer",
                     listStyleType: "none",
-                    borderBottom: "1px solid #CCC"
+                    borderBottom: "1px solid #CCC",
+                    backgroundColor: this.props.selected ? "#DAF7A6" : "#fff"
                 }}
                 onClick={this.onClickHandler.bind(this)}>
                 <div>{ this.props.marker.name }</div>

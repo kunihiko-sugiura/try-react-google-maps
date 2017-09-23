@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-// const googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.28&libraries=places,geometry&language=ja&region=JP&key=" + process.env.GMAP_API_KEY;
+import { withGoogleMap, GoogleMap, InfoWindow, Marker } from "react-google-maps";
 
 const GoogleMapWrap = withGoogleMap(props => (
     <GoogleMap
@@ -16,8 +15,13 @@ const GoogleMapWrap = withGoogleMap(props => (
             key={ marker.position.lat + ":" + marker.position.lng  }
             position={ marker.position }
             defaultAnimation={2}
-            icon={ marker.icon ? marker.icon : null }
-        />
+            icon={ marker.icon ? marker.icon : null } >
+            { props.selected === marker.id && (
+                <InfoWindow>
+                    <div>{marker.name}</div>
+                </InfoWindow>)
+            }
+        </Marker>
         ))}
     </GoogleMap>
 ));
@@ -30,6 +34,7 @@ class MapContainer extends React.Component {
     render() {
         return (
             <GoogleMapWrap
+                selected={this.props.selected}
                 zoom={this.props.zoom}
                 center={this.props.center}
                 markers={this.props.markers}
